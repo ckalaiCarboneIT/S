@@ -1,9 +1,12 @@
 package org.example.demo.ticket.batch;
 
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.example.demo.ticket.business.impl.IManagerFactory;
+import org.example.demo.ticket.business.impl.ManagerFactoryImpl;
 import org.example.demo.ticket.model.exception.TechnicalException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 /**
@@ -13,7 +16,9 @@ import org.example.demo.ticket.model.exception.TechnicalException;
  */
 public class Main {
 
-    /** Logger pour la classe */
+    /**
+     * Logger pour la classe
+     */
     private static final Log LOGGER = LogFactory.getLog(Main.class);
 
 
@@ -24,6 +29,12 @@ public class Main {
      * @throws TechnicalException sur erreur technique
      */
     public static void main(String[] pArgs) throws TechnicalException {
+        ApplicationContext vApplicationContext
+                = new ClassPathXmlApplicationContext("classpath:/applicationContext.xml");
+
+        // Il est possible de récupérer un bean dans ce contexte :
+        IManagerFactory vManagerFactory
+                = vApplicationContext.getBean("managerFactory", ManagerFactoryImpl.class);
         try {
             if (pArgs.length < 1) {
                 throw new TechnicalException("Veuillez préciser le traitement à effectuer !");

@@ -3,7 +3,7 @@ package org.example.demo.ticket.business.impl;
 import org.example.demo.ticket.business.contract.manager.IProjetManager;
 import org.example.demo.ticket.business.contract.manager.ITicketManager;
 
-public class ManagerFactory {
+public class ManagerFactoryImpl implements IManagerFactory {
 
     private IProjetManager projetManager;
     private ITicketManager ticketManager;
